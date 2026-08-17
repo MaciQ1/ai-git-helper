@@ -55,6 +55,8 @@ Adresy:
 - Health check: `http://localhost:8080/health`
 - Swagger UI: `http://localhost:8080/swagger` tylko gdy `ENABLE_SWAGGER=true` albo backend działa w środowisku Development
 
+Metadane interfejsu: tytuł `AI Git Helper`, favicon `/favicon.svg`, adres lokalny `http://localhost:3000`.
+
 Zatrzymanie usług:
 
 ```powershell
@@ -136,6 +138,27 @@ Najważniejsze kody odpowiedzi:
 
 Dokumentacja interaktywna OpenAPI jest dostępna pod `/swagger`, gdy jest włączona. Nie włączaj jej publicznie bez dodatkowej ochrony.
 
+## Workflow: diff do Pull Requesta
+
+1. W folderze projektu, który zmieniasz, sprawdź `git status`.
+2. Dodaj wybrane pliki przez `git add`.
+3. Skopiuj sam diff: `git diff --cached --no-color | Set-Clipboard`.
+4. Wklej diff do pola `Git diff` w tej aplikacji.
+5. Wygeneruj commit message i opis Pull Requesta.
+6. Uruchom testy oraz build właściwego projektu. Nie wklejaj logu testów do pola `Git diff`.
+7. Skopiuj opis PR i zastąp `Testing: Not run` rzeczywistymi komendami oraz ich wynikiem.
+8. Utwórz commit dopiero po przejściu testów.
+
+Przykładowa sekcja opisu PR:
+
+```markdown
+## Testing
+
+- `dotnet test` - passed
+- `npm test` - passed
+- `npm run build` - passed
+```
+
 ## Uruchomienie lokalne
 
 Wymagane są .NET 8 SDK oraz Node.js 22.12+.
@@ -160,6 +183,8 @@ Otwórz adres pokazany przez Vite, zwykle `http://localhost:5173`. Vite przekazu
 
 ## Testowanie
 
+Pełna procedura znajduje się w `docs/testing.md`.
+
 Testy backendu, w tym klienta AI, API, autoryzacji i redakcji sekretów:
 
 ```powershell
@@ -181,6 +206,8 @@ npm test
 npm run build
 npm audit --audit-level=high
 ```
+
+Po wypchnięciu zmian na `main`, `dev` albo po utworzeniu Pull Requesta GitHub Actions uruchamia automatycznie build backendu, testy .NET, testy i build frontendu, audit zależności oraz build obrazów Docker. Wynik sprawdzisz w zakładce `Actions` albo w sekcji `Checks` Pull Requesta.
 
 Kontrola Compose i obrazów:
 
@@ -262,6 +289,10 @@ Sprawdź endpoint `OPENAI_BASE_URL`, nazwę `OPENAI_MODEL`, ważność klucza i 
 ### Docker nie odpowiada
 
 Uruchom Docker Desktop i sprawdź `docker info`, a następnie wykonaj ponownie `docker compose build`.
+
+### Compose ostrzega o zmiennych, np. `asaj` albo `sakris097`
+
+Jeśli wartość w `.env` zawiera `$nazwa`, Docker Compose interpretuje ją jako zmienną środowiskową. Użyj klucza bez znaków `$` albo zapisz wartość w pojedynczych cudzysłowach. Klucz aplikacji musi mieć minimum 32 znaki.
 
 ## Licencja
 
