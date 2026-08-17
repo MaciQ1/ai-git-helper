@@ -37,6 +37,11 @@ describe('App', () => {
         body: JSON.stringify({ gitDiff: 'diff --git a/file b/file' }),
       }),
     )
+
+    fireEvent.click(screen.getByRole('button', { name: 'Wyczyść diff i wynik' }))
+
+    expect(screen.getByLabelText('Git diff')).toHaveValue('')
+    expect(screen.queryByText('feat: add tests')).not.toBeInTheDocument()
   })
 
   it('shows an authentication error for an invalid access key', async () => {
