@@ -183,6 +183,8 @@ Otwórz adres pokazany przez Vite, zwykle `http://localhost:5173`. Vite przekazu
 
 ## Testowanie
 
+Pełna procedura znajduje się w `docs/testing.md`.
+
 Testy backendu, w tym klienta AI, API, autoryzacji i redakcji sekretów:
 
 ```powershell
