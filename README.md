@@ -55,7 +55,7 @@ Adresy:
 - Health check: `http://localhost:8080/health`
 - Swagger UI: `http://localhost:8080/swagger` tylko gdy `ENABLE_SWAGGER=true` albo backend działa w środowisku Development
 
-Karta przeglądarki pokazuje nazwę `AI Git Helper` i własny favicon. Adres `localhost:3000` pozostaje adresem lokalnego hosta. Jeśli chcesz używać lokalnej nazwy `http://ai-git-helper.local:3000`, dodaj jako administrator do pliku `C:\Windows\System32\drivers\etc\hosts` wpis `127.0.0.1 ai-git-helper.local`, a następnie otwórz ten adres.
+Metadane interfejsu: tytuł `AI Git Helper`, favicon `/favicon.svg`, adres lokalny `http://localhost:3000`.
 
 Zatrzymanie usług:
 
