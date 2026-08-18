@@ -293,7 +293,3 @@ Uruchom Docker Desktop i sprawdź `docker info`, a następnie wykonaj ponownie `
 ### Compose ostrzega o zmiennych, np. `asaj` albo `sakris097`
 
 Jeśli wartość w `.env` zawiera `$nazwa`, Docker Compose interpretuje ją jako zmienną środowiskową. Użyj klucza bez znaków `$` albo zapisz wartość w pojedynczych cudzysłowach. Klucz aplikacji musi mieć minimum 32 znaki.
-
-## Licencja
-
-Projekt nie ma jeszcze przypisanej licencji. Przed publiczną dystrybucją dodaj właściwy plik `LICENSE`.
